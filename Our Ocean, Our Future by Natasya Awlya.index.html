@@ -1,0 +1,1327 @@
+bash
+
+cat > /home/claude/campaign.html << 'HTMLEOF'
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laut Kita, Masa Depan Kita — Ocean Health & Curriculum Campaign</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  :root {
+    --ocean-deep: #042C53;
+    --ocean-mid: #185FA5;
+    --ocean-bright: #378ADD;
+    --ocean-light: #B5D4F4;
+    --ocean-pale: #E6F1FB;
+    --green-dark: #27500A;
+    --green-mid: #3B6D11;
+    --green-bright: #639922;
+    --green-light: #C0DD97;
+    --green-pale: #EAF3DE;
+    --amber: #BA7517;
+    --amber-light: #FAC775;
+    --amber-pale: #FAEEDA;
+    --coral: #993C1D;
+    --coral-light: #F0997B;
+    --coral-pale: #FAECE7;
+    --teal: #0F6E56;
+    --teal-light: #5DCAA5;
+    --teal-pale: #E1F5EE;
+    --sand: #F7F4EE;
+    --text-dark: #1a1a1a;
+    --text-mid: #444;
+    --text-muted: #777;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--text-dark);
+    background: #fff;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(4, 44, 83, 0.97);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+    backdrop-filter: blur(8px);
+  }
+  .nav-brand {
+    font-family: var(--font-display);
+    color: var(--ocean-light);
+    font-size: 1.1rem;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 0; }
+  .nav-links a {
+    color: rgba(181,212,244,0.75);
+    text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 0 1rem;
+    height: 60px;
+    display: flex; align-items: center;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .nav-links a:hover { color: #fff; border-color: var(--ocean-bright); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(165deg, var(--ocean-deep) 0%, #0a3d6b 40%, #0d6e5c 80%, #0a4d3a 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    padding: 80px 2rem 4rem;
+    text-align: center;
+  }
+  .hero-waves {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    opacity: 0.15;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    color: var(--ocean-light);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    color: #fff;
+    line-height: 1.1;
+    max-width: 900px;
+    margin-bottom: 0.3rem;
+  }
+  .hero h1 em {
+    color: var(--teal-light);
+    font-style: italic;
+  }
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--ocean-light);
+    font-style: italic;
+    margin-bottom: 2rem;
+    opacity: 0.85;
+  }
+  .hero-desc {
+    max-width: 640px;
+    color: rgba(181,212,244,0.8);
+    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+  .hero-cta-group { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+  .btn-primary {
+    background: var(--teal-light);
+    color: var(--ocean-deep);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    transition: transform 0.2s, opacity 0.2s;
+    display: inline-block;
+  }
+  .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
+  .btn-outline {
+    border: 1.5px solid rgba(181,212,244,0.4);
+    color: var(--ocean-light);
+    text-decoration: none;
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    letter-spacing: 0.03em;
+    transition: border-color 0.2s, color 0.2s;
+    display: inline-block;
+  }
+  .btn-outline:hover { border-color: var(--ocean-light); color: #fff; }
+
+  /* STAT ROW */
+  .stat-row {
+    display: flex; flex-wrap: wrap;
+    gap: 0;
+    border-top: 1px solid rgba(181,212,244,0.15);
+    border-bottom: 1px solid rgba(181,212,244,0.15);
+    margin-top: 4rem;
+    width: 100%;
+    max-width: 900px;
+  }
+  .stat-item {
+    flex: 1; min-width: 160px;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-right: 1px solid rgba(181,212,244,0.15);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--teal-light);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.4rem;
+  }
+  .stat-label {
+    font-size: 0.78rem;
+    color: rgba(181,212,244,0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .container-narrow { max-width: 780px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 0.3rem 0.8rem;
+    border-radius: 100px;
+    margin-bottom: 1rem;
+  }
+  .tag-ocean { background: var(--ocean-pale); color: var(--ocean-mid); }
+  .tag-green { background: var(--green-pale); color: var(--green-dark); }
+  .tag-amber { background: var(--amber-pale); color: var(--amber); }
+  .tag-coral { background: var(--coral-pale); color: var(--coral); }
+  .tag-teal { background: var(--teal-pale); color: var(--teal); }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    line-height: 1.2;
+    color: var(--ocean-deep);
+    margin-bottom: 1rem;
+  }
+  h2 em { color: var(--green-mid); font-style: italic; }
+  h3 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    color: var(--ocean-deep);
+    margin-bottom: 0.6rem;
+  }
+  p { color: var(--text-mid); margin-bottom: 1rem; }
+  p:last-child { margin-bottom: 0; }
+  .lead { font-size: 1.15rem; color: var(--text-dark); line-height: 1.9; }
+
+  /* INTRO SPLIT */
+  .intro-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  @media (max-width: 768px) { .intro-split { grid-template-columns: 1fr; gap: 2rem; } }
+
+  .intro-visual {
+    background: linear-gradient(135deg, var(--ocean-pale), var(--teal-pale));
+    border-radius: 1rem;
+    padding: 2.5rem;
+    position: relative;
+  }
+  .intro-visual-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    color: var(--ocean-deep);
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+  }
+  .fact-item {
+    display: flex; gap: 1rem; align-items: flex-start;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid rgba(4,44,83,0.08);
+  }
+  .fact-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+  .fact-icon {
+    width: 36px; height: 36px; border-radius: 8px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .fact-icon.ocean { background: var(--ocean-pale); }
+  .fact-icon.green { background: var(--green-pale); }
+  .fact-icon.amber { background: var(--amber-pale); }
+  .fact-text { font-size: 0.9rem; color: var(--text-mid); line-height: 1.5; }
+  .fact-text strong { color: var(--ocean-deep); font-weight: 600; }
+
+  /* ISSUE SECTION */
+  .issue-bg { background: var(--ocean-deep); }
+  .issue-bg h2 { color: #fff; }
+  .issue-bg h2 em { color: var(--teal-light); }
+  .issue-bg .lead { color: rgba(181,212,244,0.9); }
+  .issue-bg p { color: rgba(181,212,244,0.75); }
+  .issue-bg .section-tag { background: rgba(255,255,255,0.1); color: var(--ocean-light); }
+
+  .issue-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .issue-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(181,212,244,0.15);
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+  .issue-card-icon {
+    width: 48px; height: 48px; border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.4rem; margin-bottom: 1rem;
+  }
+  .issue-card h3 { color: var(--ocean-light); font-size: 1.1rem; }
+  .issue-card p { color: rgba(181,212,244,0.7); font-size: 0.92rem; }
+  .issue-card .stat-highlight {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--teal-light);
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  /* DATA PANELS */
+  .data-row {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+  .data-row.reverse { direction: rtl; }
+  .data-row.reverse > * { direction: ltr; }
+  @media (max-width: 768px) {
+    .data-row { grid-template-columns: 1fr; direction: ltr; }
+    .data-row.reverse { direction: ltr; }
+  }
+  .data-number-block {
+    background: var(--sand);
+    border-radius: 1rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border: 1px solid rgba(4,44,83,0.08);
+  }
+  .big-number {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    color: var(--ocean-deep);
+    line-height: 1;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  .big-label { font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.07em; }
+  .source-tag { font-size: 0.75rem; color: var(--text-muted); margin-top: 0.8rem; display: block; }
+
+  /* CURRICULUM SECTION */
+  .curriculum-tabs { display: flex; gap: 0; border-bottom: 2px solid var(--green-pale); margin-bottom: 3rem; }
+  .tab-btn {
+    background: none; border: none; cursor: pointer;
+    padding: 1rem 1.5rem;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    border-bottom: 3px solid transparent;
+    margin-bottom: -2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn.active { color: var(--ocean-deep); border-color: var(--ocean-bright); }
+  .tab-btn:hover { color: var(--ocean-deep); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* TWO-COL COMPARE */
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  @media (max-width: 700px) { .compare-grid { grid-template-columns: 1fr; } }
+  .compare-card {
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid;
+  }
+  .compare-card.problem {
+    background: var(--coral-pale);
+    border-color: rgba(153,60,29,0.2);
+  }
+  .compare-card.solution {
+    background: var(--teal-pale);
+    border-color: rgba(15,110,86,0.2);
+  }
+  .compare-card h3 { font-size: 1rem; margin-bottom: 1rem; }
+  .compare-card.problem h3 { color: var(--coral); }
+  .compare-card.solution h3 { color: var(--teal); }
+  .compare-list { list-style: none; }
+  .compare-list li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 0.9rem;
+    color: var(--text-mid);
+    display: flex; gap: 0.75rem; align-items: flex-start;
+  }
+  .compare-list li:last-child { border-bottom: none; }
+  .compare-list li::before {
+    flex-shrink: 0;
+    width: 18px; height: 18px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 700;
+    margin-top: 2px;
+  }
+  .compare-card.problem .compare-list li::before {
+    content: '✕'; background: var(--coral-light); color: #fff;
+  }
+  .compare-card.solution .compare-list li::before {
+    content: '✓'; background: var(--teal-light); color: #fff;
+  }
+
+  /* STRATEGIES */
+  .strategies-bg { background: var(--sand); }
+  .strategy-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .strategy-card {
+    background: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+    border: 1px solid rgba(4,44,83,0.08);
+    position: relative;
+    overflow: hidden;
+  }
+  .strategy-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 4px;
+  }
+  .strategy-card.teacher::before { background: var(--ocean-bright); }
+  .strategy-card.student::before { background: var(--green-bright); }
+  .strategy-card.community::before { background: var(--amber); }
+  .strategy-card .audience {
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; margin-bottom: 0.8rem; display: block;
+  }
+  .strategy-card.teacher .audience { color: var(--ocean-mid); }
+  .strategy-card.student .audience { color: var(--green-dark); }
+  .strategy-card.community .audience { color: var(--amber); }
+  .activity-list { list-style: none; margin-top: 1rem; }
+  .activity-list li {
+    padding: 0.5rem 0;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    display: flex; gap: 0.6rem; align-items: flex-start;
+    border-bottom: 1px dotted rgba(0,0,0,0.1);
+  }
+  .activity-list li:last-child { border-bottom: none; }
+  .activity-list li::before { content: '→'; color: var(--ocean-bright); flex-shrink: 0; margin-top: 1px; }
+
+  /* INDONESIA CONTEXT */
+  .indo-section { background: var(--green-pale); }
+  .indo-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media (max-width: 768px) { .indo-grid { grid-template-columns: 1fr; } }
+  .indo-highlight {
+    background: var(--green-dark);
+    color: #fff;
+    border-radius: 1rem;
+    padding: 2rem;
+  }
+  .indo-highlight h3 { color: var(--green-light); font-size: 1rem; margin-bottom: 1.2rem; }
+  .indo-stat {
+    display: flex; gap: 1rem; align-items: center;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(192,221,151,0.15);
+  }
+  .indo-stat:last-child { border-bottom: none; }
+  .indo-stat-num {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    color: var(--green-light);
+    flex-shrink: 0; min-width: 80px;
+    line-height: 1;
+  }
+  .indo-stat-label { font-size: 0.85rem; color: rgba(192,221,151,0.8); }
+
+  /* CURRICULUM FRAMEWORK */
+  .framework-bg { background: var(--ocean-deep); }
+  .framework-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 1rem;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  @media (max-width: 700px) { .framework-grid { grid-template-columns: 1fr; } }
+  .framework-cell {
+    background: var(--ocean-deep);
+    padding: 2rem;
+    border: 1px solid rgba(181,212,244,0.1);
+  }
+  .framework-cell-label {
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.1em; color: var(--teal-light); margin-bottom: 0.6rem; display: block;
+  }
+  .framework-cell h3 { color: var(--ocean-light); font-size: 1rem; margin-bottom: 0.5rem; }
+  .framework-cell p { color: rgba(181,212,244,0.65); font-size: 0.88rem; }
+
+  /* CALL TO ACTION */
+  .cta-section {
+    background: linear-gradient(135deg, var(--ocean-deep), var(--green-dark));
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+  .cta-section h2 { color: #fff; margin-bottom: 1rem; }
+  .cta-section h2 em { color: var(--teal-light); }
+  .cta-section p { color: rgba(181,212,244,0.8); max-width: 600px; margin: 0 auto 2.5rem; }
+  .cta-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    max-width: 800px; margin: 0 auto;
+  }
+  .action-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.2s;
+    cursor: pointer;
+  }
+  .action-card:hover { transform: translateY(-3px); background: rgba(255,255,255,0.13); }
+  .action-card .action-icon { font-size: 2rem; display: block; margin-bottom: 0.8rem; }
+  .action-card .action-title { font-weight: 600; font-size: 0.9rem; color: #fff; display: block; margin-bottom: 0.4rem; }
+  .action-card .action-desc { font-size: 0.82rem; color: rgba(181,212,244,0.7); }
+
+  /* SOURCES */
+  .sources-section { background: var(--sand); padding: 3rem 2rem; }
+  .sources-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem; }
+  .source-chip {
+    background: #fff;
+    border: 1px solid rgba(4,44,83,0.12);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--ocean-deep);
+    color: rgba(181,212,244,0.6);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.82rem;
+  }
+  footer a { color: var(--ocean-light); text-decoration: none; }
+
+  /* TIMELINE */
+  .timeline { position: relative; margin-top: 2.5rem; }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 20px; top: 0; bottom: 0;
+    width: 2px; background: var(--ocean-pale);
+  }
+  .timeline-item {
+    display: flex; gap: 1.5rem;
+    margin-bottom: 2rem;
+    align-items: flex-start;
+  }
+  .timeline-dot {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--ocean-mid);
+    color: #fff; font-size: 0.8rem; font-weight: 600;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; position: relative; z-index: 1;
+  }
+  .timeline-content h3 { font-size: 1rem; color: var(--ocean-deep); margin-bottom: 0.3rem; }
+  .timeline-content p { font-size: 0.88rem; color: var(--text-muted); }
+
+  /* QUOTE */
+  .pull-quote {
+    border-left: 4px solid var(--teal-light);
+    margin: 2rem 0;
+    padding: 1.2rem 1.5rem;
+    background: var(--teal-pale);
+    border-radius: 0 0.5rem 0.5rem 0;
+  }
+  .pull-quote p {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--teal);
+    margin-bottom: 0.5rem;
+  }
+  .pull-quote cite { font-size: 0.82rem; color: var(--text-muted); font-style: normal; }
+
+  /* ACCORDION */
+  .accordion { margin-top: 2rem; }
+  .accordion-item { border-bottom: 1px solid rgba(4,44,83,0.1); }
+  .accordion-btn {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 0; text-align: left;
+    font-family: var(--font-body); font-size: 0.95rem; font-weight: 500;
+    color: var(--ocean-deep);
+    transition: color 0.2s;
+  }
+  .accordion-btn:hover { color: var(--ocean-bright); }
+  .accordion-btn .chevron {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--ocean-pale); color: var(--ocean-mid);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+  .accordion-btn.open .chevron { transform: rotate(180deg); }
+  .accordion-content { display: none; padding: 0 0 1.2rem; font-size: 0.9rem; color: var(--text-mid); line-height: 1.8; }
+  .accordion-content.open { display: block; }
+
+  /* PROGRESS BARS */
+  .progress-item { margin-bottom: 1.2rem; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 0.85rem; margin-bottom: 0.4rem; }
+  .progress-label span:first-child { color: var(--text-mid); }
+  .progress-label span:last-child { font-weight: 600; color: var(--ocean-deep); }
+  .progress-bar { height: 8px; background: var(--ocean-pale); border-radius: 100px; overflow: hidden; }
+  .progress-fill { height: 100%; border-radius: 100px; background: var(--ocean-bright); transition: width 1s ease; }
+
+  /* ANIMATION */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .animate-in { animation: fadeInUp 0.7s ease forwards; }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(4,44,83,0.12), transparent);
+    margin: 0;
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-brand" href="#hero">Our Ocean, Our Future by Natasya Awlya</a>
+  <div class="nav-links">
+    <a href="#issue">The Issue</a>
+    <a href="#curriculum">Blue & Green</a>
+    <a href="#indonesia">Indonesia</a>
+    <a href="#strategies">Act Now</a>
+    <a href="#about me">About</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <svg class="hero-waves" viewBox="0 0 1440 200" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,100 C360,160 720,40 1080,100 C1260,130 1380,90 1440,100 L1440,200 L0,200 Z" fill="rgba(93,202,165,0.3)"/>
+    <path d="M0,140 C480,80 960,180 1440,140 L1440,200 L0,200 Z" fill="rgba(55,138,221,0.2)"/>
+  </svg>
+  
+  <div class="hero-badge">&#127754; Ocean &amp; Environmental Health Campaign</div>
+  
+  <h1>Laut Kita,<br><em>Masa Depan Kita</em></h1>
+  <p class="hero-subtitle">Our Ocean, Our Future — Educating for a Healthy Indonesia by Natasya Awlya IPSE 2023</p>
+  
+  <p class="hero-desc">
+    Marine plastic pollution is silently poisoning Indonesia's seas, food systems, and communities.
+    But the real crisis may be educational — a generation growing up disconnected from the ocean that sustains them.
+    Blue and Green Curriculum can change this.
+  </p>
+  
+  <div class="hero-cta-group">
+    <a href="#issue" class="btn-primary">Understand the Crisis</a>
+    <a href="#strategies" class="btn-outline">Take Action</a>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-item">
+      <span class="stat-num">17M</span>
+      <span class="stat-label">Tonnes plastic in Indonesian seas annually</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">70%</span>
+      <span class="stat-label">Of Earth's surface covered by ocean</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">#2</span>
+      <span class="stat-label">Indonesia: world's largest ocean plastic polluter</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">90%</span>
+      <span class="stat-label">GEP target: countries greening curriculum by 2030</span>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="about" style="padding: 5rem 2rem;">
+  <div class="container intro-split">
+    <div>
+      <span class="section-tag tag-ocean">The Environmental Health Issue</span>
+      <h2>Marine Plastic Pollution:<br><em>A Health & Education Emergency</em></h2>
+      <p class="lead">Indonesia sits at the heart of the Coral Triangle — the most biodiverse marine region on Earth. Yet it also ranks among the world's top contributors to ocean plastic waste, threatening marine ecosystems, food security, and human health.</p>
+      <p>Microplastics now enter the human food chain through contaminated fish and seafood. Studies have detected plastic particles in the blood, lungs, and placentas of Indonesians. Coastal communities who depend on the sea for their livelihoods face shrinking catches and rising illness.</p>
+      <p>This is not just an environmental crisis — it is a public health emergency rooted in a systemic failure of environmental education. Neither the full scope of ocean health, nor the human dimensions of plastic pollution, are meaningfully addressed in Indonesia's national curriculum (Kurikulum Merdeka).</p>
+
+      <div class="pull-quote">
+        <p>"The essence of Ocean Literacy is understanding the ocean's influence on us and our influence on the ocean."</p>
+        <cite>— IOC-UNESCO, A New Blue Curriculum (2022)</cite>
+      </div>
+    </div>
+    <div class="intro-visual">
+      <p class="intro-visual-title">Key Facts at a Glance</p>
+      <div class="fact-item">
+        <div class="fact-icon ocean">&#127754;</div>
+        <div class="fact-text"><strong>80% of ocean pollution</strong> originates from land-based sources, including plastic waste from rivers and urban runoff in Indonesia's major cities.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-icon amber">&#9888;</div>
+        <div class="fact-text"><strong>1 billion people</strong> globally depend on the ocean as their primary protein source. In Indonesia, over 100 million consume fish daily — now increasingly contaminated with microplastics.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-icon green">&#127807;</div>
+        <div class="fact-text"><strong>Only 30% of countries</strong> currently include ocean-related content in their formal curricula, according to UNESCO IOC (2022). Indonesia's coverage remains fragmented.</div>
+      </div>
+      <div class="fact-item">
+        <div class="fact-icon ocean">&#127758;</div>
+        <div class="fact-text"><strong>The Ocean Decade (2021–2030)</strong> calls for mainstreaming Ocean Literacy in education policy as a priority for achieving all 17 UN Sustainable Development Goals.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ISSUE DEEP DIVE -->
+<section class="issue-bg" id="issue">
+  <div class="container">
+    <span class="section-tag">Understanding the Crisis</span>
+    <h2>Marine Plastic Pollution:<br><em>Causes, Impacts & Urgency</em></h2>
+    <p class="lead" style="max-width:700px; margin-top:1rem;">From river systems to dinner plates, plastic pollution follows a devastating chain that connects human behaviour, environmental degradation, and public health outcomes.</p>
+
+    <div class="issue-grid">
+      <div class="issue-card">
+        <div class="issue-card-icon" style="background: rgba(55,138,221,0.2);">&#127728;</div>
+        <h3>The Source</h3>
+        <span class="stat-highlight">75%</span>
+        <p>Of Indonesia's plastic waste enters waterways through improper disposal, inadequate waste management infrastructure, and a culture of single-use plastics. Major rivers like the Citarum — dubbed the world's most polluted river — carry millions of tonnes to the sea annually.</p>
+      </div>
+      <div class="issue-card">
+        <div class="issue-card-icon" style="background: rgba(93,202,165,0.2);">&#128030;</div>
+        <h3>The Ecosystem Impact</h3>
+        <span class="stat-highlight">50%</span>
+        <p>Of Indonesia's coral reefs are moderately to severely degraded, partly due to plastic entanglement, smothering, and chemical leaching. Coral reefs support 25% of all marine life and protect 60 million Indonesians living in coastal zones from storm surges.</p>
+      </div>
+      <div class="issue-card">
+        <div class="issue-card-icon" style="background: rgba(239,159,39,0.2);">&#129368;</div>
+        <h3>Human Health Risk</h3>
+        <span class="stat-highlight">11M</span>
+        <p>Tonnes of plastic enter the global ocean annually. Microplastics — fragments under 5mm — are now found in Indonesian seafood, drinking water, and even in the blood and breast milk of coastal residents, linked to hormonal disruption, inflammation, and carcinogenic risk.</p>
+      </div>
+      <div class="issue-card">
+        <div class="issue-card-icon" style="background: rgba(208,90,48,0.2);">&#128200;</div>
+        <h3>Economic Damage</h3>
+        <span class="stat-highlight">$13B</span>
+        <p>Annual economic damage to marine and coastal tourism industries across Southeast Asia from plastic pollution (UNEP, 2016). Indonesian fishing communities report catch declines of 30–50% in heavily polluted coastal areas, deepening food insecurity and poverty.</p>
+      </div>
+      <div class="issue-card">
+        <div class="issue-card-icon" style="background: rgba(181,212,244,0.2);">&#127973;</div>
+        <h3>The Climate Link</h3>
+        <span class="stat-highlight">50%</span>
+        <p>Of Earth's oxygen is produced by ocean phytoplankton. Plastic pollution suppresses phytoplankton growth, reducing the ocean's capacity to absorb CO₂ — the very climate regulation function that makes Earth habitable. Ocean health and climate crisis are inseparable.</p>
+      </div>
+      <div class="issue-card">
+        <div class="issue-card-icon" style="background: rgba(99,153,34,0.2);">&#128218;</div>
+        <h3>The Education Gap</h3>
+        <span class="stat-highlight">Low</span>
+        <p>Indonesia's Kurikulum Merdeka introduces environmental themes but lacks systematic ocean literacy, plastic pollution health impacts, or action-oriented competencies. Without curriculum transformation, knowledge gaps perpetuate behaviours that drive pollution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DATA SECTION -->
+<section style="padding: 5rem 2rem; background: #fff;" id="data">
+  <div class="container">
+    <span class="section-tag tag-teal">Data & Evidence</span>
+    <h2>The Numbers That<br><em>Demand Action</em></h2>
+
+    <div class="data-row" style="margin-top:3rem;">
+      <div class="data-number-block">
+        <span class="big-number">6M+</span>
+        <span class="big-label">Tonnes of plastic enter the ocean globally every year</span>
+        <span class="source-tag">Source: Jambeck et al., Science (2015)</span>
+      </div>
+      <div>
+        <h3>Indonesia's Plastic Crisis: A National Emergency</h3>
+        <p>Indonesia produces approximately 6.8 million tonnes of plastic waste annually, and over 620,000 tonnes enter its surrounding seas. The country's 17,000 islands, 99,000 km of coastline, and 270 million population create both enormous vulnerability and extraordinary responsibility.</p>
+        <p>The Indonesian government's National Action Plan on Marine Debris (2017–2025) committed to reducing marine plastic pollution by 70% — but implementation has been inconsistent, underfunded, and hampered by low public awareness rooted in the education deficit.</p>
+        <p>Waste-pickers and fishing communities in Java, Sulawesi, and Kalimantan report respiratory problems, skin diseases, and gastrointestinal illness linked to plastic burning and microplastic ingestion — a public health emergency invisible in national health statistics.</p>
+      </div>
+    </div>
+
+    <div class="data-row reverse">
+      <div class="data-number-block">
+        <span class="big-number">99%</span>
+        <span class="big-label">Of seabirds will have ingested plastic by 2050 (CSIRO)</span>
+        <span class="source-tag">Source: Commonwealth Scientific & Industrial Research Organisation</span>
+      </div>
+      <div>
+        <h3>Biodiversity Collapse at the Coral Triangle</h3>
+        <p>Indonesia lies at the heart of the Coral Triangle — a region covering just 1.6% of ocean surface but containing 76% of the world's coral species, 37% of reef fish species, and critical nesting grounds for six of the world's seven sea turtle species.</p>
+        <p>Plastic pollution, combined with rising sea temperatures from climate change, is driving coral bleaching events of increasing severity. The 2016 and 2019 bleaching events damaged over 50% of Indonesian reefs — ecosystems that protect coastal communities, sustain fisheries, and generate tourism revenue worth $3.1 billion annually.</p>
+        <p>For Indonesian students, this is not an abstract global problem — it is an unfolding catastrophe in their own waters, affecting their families, food, and futures. Yet the curriculum rarely makes this connection explicit.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- BLUE & GREEN CURRICULUM -->
+<section id="curriculum" style="padding: 5rem 2rem;">
+  <div class="container">
+    <span class="section-tag tag-green">Curriculum Innovation</span>
+    <h2>Blue & Green Curriculum:<br><em>The Educational Response</em></h2>
+    <p class="lead" style="max-width:700px; margin-top:1rem;">Two transformative UNESCO frameworks offer a roadmap: the Green Curriculum for climate action, and the Blue Curriculum for ocean literacy. Together, they address both the causes and solutions to marine plastic pollution.</p>
+
+    <div class="curriculum-tabs" id="curr-tabs">
+      <button class="tab-btn active" onclick="switchTab('blue')">&#127754; Blue Curriculum</button>
+      <button class="tab-btn" onclick="switchTab('green')">&#127807; Green Curriculum (Greening)</button>
+      <button class="tab-btn" onclick="switchTab('together')">&#9679; Together</button>
+    </div>
+
+    <div id="tab-blue" class="tab-panel active">
+      <div class="compare-grid">
+        <div>
+          <h3 style="color:var(--ocean-mid);">What is the Blue Curriculum?</h3>
+          <p>Developed by IOC-UNESCO (2022), the Blue Curriculum is a framework for integrating <strong>Ocean Literacy</strong> into national education systems. It is built on the understanding that <em>"the ocean's influence on us and our influence on the ocean"</em> must be understood by all citizens.</p>
+          <p>The Blue Curriculum uses a <strong>Theory of Change</strong> model with four components: Knowledge & Awareness, Nature-Connectedness, Values & Attitudes, and Competences — to move learners from passive awareness to active ocean stewardship.</p>
+          <p>Its seven foundational principles assert that: the ocean makes Earth habitable; the ocean drives climate; the ocean supports all life; the ocean and humans are inextricably linked; and the ocean is largely unexplored. These principles should underpin all subjects — not just science.</p>
+          <div class="pull-quote" style="margin-top:1.5rem;">
+            <p>"Ocean Literacy has grown into an approach for society as a whole that catalyzes actions to protect, conserve and sustainably use the ocean."</p>
+            <cite>— IOC-UNESCO, A New Blue Curriculum (2022)</cite>
+          </div>
+        </div>
+        <div>
+          <h3 style="color:var(--ocean-mid);">7 Principles of Ocean Literacy</h3>
+          <div class="timeline">
+            <div class="timeline-item"><div class="timeline-dot">1</div><div class="timeline-content"><h3>One big ocean, many features</h3><p>Earth's ocean is interconnected; local actions have global consequences.</p></div></div>
+            <div class="timeline-item"><div class="timeline-dot">2</div><div class="timeline-content"><h3>Ocean shapes Earth's features</h3><p>Coastlines, geology, and atmospheres are products of ocean processes.</p></div></div>
+            <div class="timeline-item"><div class="timeline-dot">3</div><div class="timeline-content"><h3>Ocean influences climate</h3><p>Ocean currents regulate temperature, weather, and carbon cycles globally.</p></div></div>
+            <div class="timeline-item"><div class="timeline-dot">4</div><div class="timeline-content"><h3>Ocean makes Earth habitable</h3><p>It produces oxygen, moderates temperature, and drives the water cycle.</p></div></div>
+            <div class="timeline-item"><div class="timeline-dot">5</div><div class="timeline-content"><h3>Ocean supports all life</h3><p>Biodiversity from coral reefs to deep-sea vents sustains planetary health.</p></div></div>
+            <div class="timeline-item"><div class="timeline-dot">6</div><div class="timeline-content"><h3>Ocean and humans are linked</h3><p>Culture, economy, food, medicine — all are profoundly shaped by the sea.</p></div></div>
+            <div class="timeline-item"><div class="timeline-dot">7</div><div class="timeline-content"><h3>Ocean is largely unexplored</h3><p>Over 80% remains unmapped — inspiring curiosity and scientific careers.</p></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-green" class="tab-panel">
+      <div class="compare-grid">
+        <div>
+          <h3 style="color:var(--green-mid);">What is the Green Curriculum (Greening)?</h3>
+          <p>UNESCO's Greening Curriculum Guidance (2024) aims to make <strong>all learners climate-ready</strong> through action-oriented, holistic, scientifically accurate, and justice-driven education. It responds directly to youth demands for transformative climate learning.</p>
+          <p>The Greening framework covers six key concepts: Climate Science, Ecosystems & Biodiversity, Climate Justice, Resilience-Building, Post-Carbon Economies, and Sustainable Lifestyles. Marine plastic pollution intersects all six.</p>
+          <p>Rather than treating climate as a single subject, Greening embeds it <strong>across all disciplines</strong>: geography, science, arts, social studies, health, and more — reflecting the cross-cutting nature of environmental health issues like ocean pollution.</p>
+          <div class="pull-quote" style="margin-top:1.5rem;">
+            <p>"Prioritizing the development of learners' sense of efficacy towards climate action — not just knowledge — is essential for driving behaviour change."</p>
+            <cite>— UNESCO, Greening Curriculum Guidance (2024)</cite>
+          </div>
+        </div>
+        <div>
+          <h3 style="color:var(--green-mid);">Key Principles of Greening Education</h3>
+          <div class="accordion">
+            <div class="accordion-item">
+              <button class="accordion-btn" onclick="toggleAccordion(this)">Action-Oriented Learning <span class="chevron">&#9660;</span></button>
+              <div class="accordion-content">Education must go beyond imparting knowledge. Research shows that knowledge alone does not drive behaviour change. Green curriculum builds learner agency, emotional engagement, and skills for real-world action — including addressing marine pollution in their own communities.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" onclick="toggleAccordion(this)">Contextualised & Place-Based <span class="chevron">&#9660;</span></button>
+              <div class="accordion-content">Learning is most effective when connected to local environments and lived experiences. For Indonesian students, this means learning about the Coral Triangle, local river systems, and the plastic crisis affecting their families' fishing livelihoods — not just abstract global statistics.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" onclick="toggleAccordion(this)">Cross-Disciplinary Integration <span class="chevron">&#9660;</span></button>
+              <div class="accordion-content">Marine plastic pollution is simultaneously a chemistry problem, a social justice issue, an economics challenge, a public health threat, and a cultural question. Green curriculum integrates these perspectives across subjects rather than siloing them in science class alone.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" onclick="toggleAccordion(this)">Climate Justice & Equity <span class="chevron">&#9660;</span></button>
+              <div class="accordion-content">The poorest coastal communities suffer the most from pollution they contribute least to. Green curriculum frames environmental health as a justice issue — teaching students to recognise power imbalances, historical inequalities, and the disproportionate burden on marginalized groups.</div>
+            </div>
+            <div class="accordion-item">
+              <button class="accordion-btn" onclick="toggleAccordion(this)">Whole-School & Community Approach <span class="chevron">&#9660;</span></button>
+              <div class="accordion-content">Learning doesn't stop at the school gate. Greening education extends into communities through partnerships with NGOs, local governments, traditional knowledge holders, and fishing communities — creating a connected ecosystem of environmental learning.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-together" class="tab-panel">
+      <h3 style="color:var(--ocean-deep); font-size:1.2rem; margin-bottom:1.5rem;">Why Blue + Green Together?</h3>
+      <p style="max-width:700px; margin-bottom:2rem; color:var(--text-mid);">Marine plastic pollution is a nexus issue that sits precisely at the intersection of ocean health (Blue) and climate action (Green). Neither framework alone is sufficient — but together, they offer a comprehensive educational response to one of Indonesia's most urgent environmental crises.</p>
+      <div class="framework-bg" style="border-radius:1rem; padding:2.5rem; margin-top:1rem;">
+        <div class="framework-grid" style="border-radius:0.5rem;">
+          <div class="framework-cell">
+            <span class="framework-cell-label">Blue Curriculum contributes</span>
+            <h3>Ocean as Living System</h3>
+            <p>Students learn the 7 principles of Ocean Literacy — understanding how plastic disrupts marine food webs, kills coral reefs, and enters human bodies through the food chain.</p>
+          </div>
+          <div class="framework-cell">
+            <span class="framework-cell-label">Green Curriculum contributes</span>
+            <h3>Climate & Health Justice</h3>
+            <p>Students understand plastic production's carbon footprint, its disproportionate health impact on poor coastal communities, and the systemic economic changes needed for a post-plastic economy.</p>
+          </div>
+          <div class="framework-cell">
+            <span class="framework-cell-label">Blue Curriculum contributes</span>
+            <h3>Nature-Connectedness</h3>
+            <p>Field trips to mangroves, coral snorkelling, citizen science beach surveys — building emotional connection to the marine environment as the foundation for stewardship behaviour.</p>
+          </div>
+          <div class="framework-cell">
+            <span class="framework-cell-label">Green Curriculum contributes</span>
+            <h3>Action & Competence</h3>
+            <p>Students develop skills in advocacy, community organising, sustainable consumption, and innovation — from designing plastic alternatives to campaigning for waste management policy reform.</p>
+          </div>
+        </div>
+        <p style="color:rgba(181,212,244,0.65); font-size:0.88rem; margin-top:2rem; text-align:center;">Together, Blue + Green Curriculum creates ocean-literate, climate-ready, justice-conscious learners who can act.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INDONESIA CONTEXT -->
+<section class="indo-section" id="indonesia">
+  <div class="container">
+    <span class="section-tag tag-green">Indonesia in Focus</span>
+    <h2>The Indonesian Context:<br><em>Opportunity at the Coral Triangle</em></h2>
+    
+    <div class="indo-grid" style="margin-top:2.5rem;">
+      <div>
+        <p class="lead">Indonesia is simultaneously the world's largest archipelago, a major ocean plastic polluter, the heart of global marine biodiversity, and a rapidly growing educational system reaching 68 million students. No country has more at stake — or more potential — in ocean education reform.</p>
+
+        <h3 style="margin-top:2rem; color:var(--green-dark);">Current State of the Kurikulum Merdeka</h3>
+        <p>Launched in 2022, Kurikulum Merdeka (Freedom Curriculum) represents a genuine attempt at progressive education reform in Indonesia — emphasising student-centred learning, project-based approaches (Projek Penguatan Profil Pelajar Pancasila / P5), and cross-disciplinary integration.</p>
+        <p>The P5 framework includes environmental sustainability as one of six character profiles, and teachers have some flexibility to design projects around local environmental issues. This is a genuine foothold for Blue and Green curriculum integration.</p>
+
+        <div class="compare-grid" style="margin-top:2rem;">
+          <div class="compare-card problem">
+            <h3>&#10007; What's Missing</h3>
+            <ul class="compare-list">
+              <li>No systematic Ocean Literacy framework or ocean-specific learning outcomes</li>
+              <li>Marine plastic pollution not featured as a health issue in science standards</li>
+              <li>Climate justice and equity dimensions largely absent</li>
+              <li>Coastal and marine local wisdom (kearifan lokal) rarely integrated</li>
+              <li>Action-oriented competencies for environmental change underemphasised</li>
+              <li>No mandatory assessment of environmental health knowledge</li>
+            </ul>
+          </div>
+          <div class="compare-card solution">
+            <h3>&#10003; Existing Footholds</h3>
+            <ul class="compare-list">
+              <li>P5 (Profil Pelajar Pancasila) includes environmental themes with flexibility</li>
+              <li>Project-based learning model is compatible with place-based ocean education</li>
+              <li>Science curriculum covers ecosystems and pollution at basic level</li>
+              <li>Strong community (gotong royong) values align with collective environmental action</li>
+              <li>Pesantren (Islamic boarding schools) and local schools already do environmental projects</li>
+              <li>Government has marine spatial planning commitments aligned to SDG 14</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="pull-quote" style="margin-top:2rem;">
+          <p>"Indonesia's Kurikulum Merdeka creates openings for curriculum innovation — but without explicit Blue and Green frameworks, environmental health education remains fragmented, shallow, and disconnected from student lives."</p>
+          <cite>— Campaign analysis based on UNESCO frameworks (2022, 2024)</cite>
+        </div>
+
+        <h3 style="margin-top:2rem; color:var(--green-dark);">The Global-Local Link</h3>
+        <p>Globally, UNESCO's Greening Education Partnership (GEP) has set a target of 90% of countries integrating climate change in curricula by 2030. Indonesia has not yet developed a comprehensive Ocean Literacy framework aligned with the Blue Curriculum, nor a systematic greening plan for its national curriculum. In comparison, countries like Portugal, Brazil, and Kenya are already piloting Blue Curriculum approaches (IOC-UNESCO, 2022).</p>
+        <p>At the local level, communities in Wakatobi, Raja Ampat, and the Banda Sea are witnessing the direct impacts of marine plastic pollution on their traditional fishing practices, sacred marine areas, and tourism economies. Their knowledge — and their urgency — should be at the centre of a reformed curriculum.</p>
+      </div>
+
+      <div>
+        <div class="indo-highlight">
+          <h3>Indonesia by the Numbers</h3>
+          <div class="indo-stat"><span class="indo-stat-num">270M</span><span class="indo-stat-label">Population, majority dependent on marine resources</span></div>
+          <div class="indo-stat"><span class="indo-stat-num">17K</span><span class="indo-stat-label">Islands in the Indonesian archipelago</span></div>
+          <div class="indo-stat"><span class="indo-stat-num">99K</span><span class="indo-stat-label">km of coastline — longest in the world</span></div>
+          <div class="indo-stat"><span class="indo-stat-num">68M</span><span class="indo-stat-label">Students in primary and secondary schools</span></div>
+          <div class="indo-stat"><span class="indo-stat-num">3.1M</span><span class="indo-stat-label">Tonnes of fish consumed annually by Indonesians</span></div>
+          <div class="indo-stat"><span class="indo-stat-num">76%</span><span class="indo-stat-label">Of world's coral species found in the Coral Triangle</span></div>
+          <div class="indo-stat"><span class="indo-stat-num">#2</span><span class="indo-stat-label">Indonesia: 2nd largest ocean plastic polluter globally</span></div>
+        </div>
+
+        <div style="background:#fff; border-radius:1rem; padding:1.5rem; margin-top:1.5rem; border:1px solid rgba(4,44,83,0.08);">
+          <h3 style="font-size:1rem; color:var(--green-dark); margin-bottom:1.2rem;">Curriculum Coverage Assessment</h3>
+          <div class="progress-item">
+            <div class="progress-label"><span>Basic pollution awareness</span><span>45%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:45%; background:var(--green-bright);"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Ocean Literacy (Blue)</span><span>12%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:12%; background:var(--ocean-bright);"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Climate action competencies</span><span>20%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:20%; background:var(--green-mid);"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Environmental health links</span><span>18%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:18%; background:var(--amber);"></div></div>
+          </div>
+          <div class="progress-item">
+            <div class="progress-label"><span>Climate justice & equity</span><span>8%</span></div>
+            <div class="progress-bar"><div class="progress-fill" style="width:8%; background:var(--coral-light);"></div></div>
+          </div>
+          <p style="font-size:0.75rem; color:var(--text-muted); margin-top:1rem;">Estimated coverage in Kurikulum Merdeka based on curriculum review and UNESCO indicators.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STRATEGIES -->
+<section class="strategies-bg" id="strategies">
+  <div class="container">
+    <span class="section-tag tag-teal">Implementation Strategies</span>
+    <h2>Practical Steps for<br><em>Educational Transformation</em></h2>
+    <p style="max-width:680px; margin-top:1rem; color:var(--text-mid);">Based on UNESCO's Blue Curriculum Toolkit and Greening Curriculum Guidance, here are concrete, realistic strategies for integrating ocean health education across Indonesian educational settings.</p>
+
+    <div class="strategy-grid">
+      <div class="strategy-card teacher">
+        <span class="audience">For Teachers</span>
+        <h3>Transform Your Classroom Into a Blue-Green Learning Space</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted);">You don't need to overhaul the curriculum — start with your existing subjects and expand outward.</p>
+        <ul class="activity-list">
+          <li>Use <strong>P5 projects</strong> (Projek Penguatan Profil Pelajar Pancasila) to design local plastic waste solutions — from beach audits to community campaigns</li>
+          <li><strong>Integrate ocean data</strong> into maths and science: graph microplastic concentrations, calculate marine debris accumulation rates, map local rivers to the sea</li>
+          <li>Teach <strong>plastic pollution as a health issue</strong> in biology: trace microplastics through the food chain to human bodies — making it viscerally relevant</li>
+          <li>Use <strong>local literature and oral traditions</strong> (sastra laut, pantun) to teach values of ocean stewardship through Bahasa Indonesia and arts lessons</li>
+          <li>Connect with <strong>Marine Protected Area rangers, fishing cooperatives (KUD Nelayan), and NGOs</strong> like WWF Indonesia for guest speakers and field partnerships</li>
+          <li>Access <strong>IOC-UNESCO's Ocean Literacy Portal</strong> (oceanliteracy.unesco.org) for free, teacher-ready lesson resources adaptable to Indonesian contexts</li>
+          <li>Facilitate <strong>climate anxiety circles</strong> (as recommended by UNESCO GEP, 2024): creating safe spaces for students to process ocean grief and build resilience</li>
+        </ul>
+      </div>
+
+      <div class="strategy-card student">
+        <span class="audience">For Students</span>
+        <h3>Become an Ocean Advocate and Citizen Scientist</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted);">Your generation has the most at stake — and the most power to drive change, starting now.</p>
+        <ul class="activity-list">
+          <li>Join or start a <strong>Trash Hero</strong> or <strong>Pandu Laut Nusantara</strong> beach/river clean-up club at your school — turning action into learning</li>
+          <li>Conduct a <strong>plastic audit</strong> of your school canteen: identify single-use plastics, track sources, propose alternatives, and present findings to the school committee</li>
+          <li>Participate in <strong>citizen science programs</strong>: the Marine Debris Tracker app allows students to record and map plastic pollution data contributing to global research</li>
+          <li>Create <strong>documentary short films or social media content</strong> about local fishing communities impacted by plastic pollution — giving voice to those most affected</li>
+          <li>Learn about <strong>traditional Bajo sea nomad practices</strong> and other Indonesian maritime cultures for lessons in sustainable ocean relationships</li>
+          <li>Organise a <strong>plastic-free school challenge</strong> and advocate to the principal and local government for a school plastic ban policy</li>
+          <li>Connect with <strong>Youth for Ocean Indonesia</strong> and similar networks to amplify your voice at provincial and national policy levels</li>
+        </ul>
+      </div>
+
+      <div class="strategy-card community">
+        <span class="audience">For Communities & Policymakers</span>
+        <h3>Build the Infrastructure for Ocean Education</h3>
+        <p style="font-size:0.88rem; color:var(--text-muted);">Sustainable curriculum change requires systemic support beyond the classroom.</p>
+        <ul class="activity-list">
+          <li>Advocate to <strong>Kemendikbudristek</strong> (Ministry of Education) to develop an explicit Ocean Literacy framework aligned with UNESCO's Blue Curriculum Toolkit as a supplement to Kurikulum Merdeka</li>
+          <li>Fund <strong>teacher training programs</strong> in environmental health education — partnering with LIPI (Indonesian Institute of Sciences) and university marine departments</li>
+          <li>Establish <strong>school-Marine Protected Area partnerships</strong> in coastal provinces, making MPAs living classrooms for ocean education (following the Portuguese model in UNESCO's Blue Curriculum case studies)</li>
+          <li>Integrate <strong>kearifan lokal (local ecological knowledge)</strong> from Bajo, Bugis, and Batak maritime traditions into curriculum materials — decolonising ocean education</li>
+          <li>Create <strong>mangrove and reef restoration projects</strong> as mandatory P5 components in coastal school districts, connecting restoration science with community livelihoods</li>
+          <li>Fund <strong>community waste banks (bank sampah)</strong> that partner with schools, turning circular economy concepts into practised reality</li>
+          <li>Develop <strong>Indonesia-specific Ocean Literacy assessment tools</strong>, working with PUSPENDIK (Education Assessment Centre) to track progress toward UNESCO's 2030 targets</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Implementation Roadmap -->
+    <div style="margin-top:4rem;">
+      <h3 style="color:var(--ocean-deep); margin-bottom:0.5rem; font-size:1.4rem;">A Phased Implementation Roadmap for Indonesia</h3>
+      <p style="color:var(--text-muted); margin-bottom:2rem; max-width:650px;">Based on UNESCO's 10-step Greening Curriculum implementation model, adapted for the Indonesian context.</p>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:1rem;">
+        <div style="background:#fff; border-radius:1rem; padding:1.5rem; border:1px solid rgba(4,44,83,0.1);">
+          <div style="font-size:0.72rem; font-weight:600; color:var(--ocean-mid); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.8rem;">Phase 1 &middot; 2025–2026</div>
+          <h3 style="font-size:1rem; margin-bottom:0.8rem;">Foundation</h3>
+          <p style="font-size:0.85rem;">Map existing curriculum footholds. Commission Indonesia-specific Ocean Literacy report. Pilot Blue-Green P5 projects in 50 coastal schools across 5 provinces.</p>
+        </div>
+        <div style="background:#fff; border-radius:1rem; padding:1.5rem; border:1px solid rgba(4,44,83,0.1);">
+          <div style="font-size:0.72rem; font-weight:600; color:var(--green-mid); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.8rem;">Phase 2 &middot; 2026–2028</div>
+          <h3 style="font-size:1rem; margin-bottom:0.8rem;">Scale</h3>
+          <p style="font-size:0.85rem;">Develop national Ocean Literacy learning outcomes framework. Train 10,000 teachers in 14 coastal provinces. Publish Indonesia-specific Blue-Green curriculum resources in Bahasa Indonesia.</p>
+        </div>
+        <div style="background:#fff; border-radius:1rem; padding:1.5rem; border:1px solid rgba(4,44,83,0.1);">
+          <div style="font-size:0.72rem; font-weight:600; color:var(--amber); text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.8rem;">Phase 3 &middot; 2028–2030</div>
+          <h3 style="font-size:1rem; margin-bottom:0.8rem;">Mainstream</h3>
+          <p style="font-size:0.85rem;">Integrate Ocean Literacy into national curriculum standards. Launch assessment framework. Achieve UNESCO GEP target: Indonesia's curriculum meets 90% ocean-climate integration benchmark by 2030.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <span class="section-tag" style="background:rgba(255,255,255,0.15); color:rgba(181,212,244,0.9); margin-bottom:1.5rem; display:inline-block;">Take Action Today</span>
+    <h2>The Ocean Cannot Wait.<br><em>Neither Can Education.</em></h2>
+    <p>Every year we delay curriculum reform is another generation growing up disconnected from the seas that sustain them. The tools exist — the Blue and Green Curriculum frameworks, the Indonesian educational openings, the community knowledge. What remains is the collective will to act.</p>
+
+    <div class="cta-grid">
+      <div class="action-card" onclick="window.open('https://oceanliteracy.unesco.org','_blank')">
+        <span class="action-icon">&#127754;</span>
+        <span class="action-title">Explore Ocean Literacy Resources</span>
+        <span class="action-desc">Access UNESCO's Ocean Literacy Portal for free teaching materials</span>
+      </div>
+     
+      <div class="action-card" onclick="window.open('https://www.wwf.id','_blank')">
+        <span class="action-icon">&#128030;</span>
+        <span class="action-title">Join Indonesian Marine Action</span>
+        <span class="action-desc">Partner with WWF Indonesia's ocean conservation programs</span>
+      </div>
+
+</section>
+<section id="about me">
+<div class="about-container">
+
+  <!-- LEFT: PROFILE CARD -->
+  <div class="profile-card">
+
+    <h3>Hi! I'm Natasya Awlya</h3>
+    <p class="profile-role">Science Education Student</p>
+
+    <p class="profile-desc">
+      International Program on Science Education<br>
+      Universitas Pendidikan Indonesia (UPI)
+    </p>
+
+    <div class="profile-links">
+      <a href="mailto:natasyaawlya@upi.edu">Email</a>
+      <a href="https://linkedin.com/in/natasyaawlya/" target="_blank">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- RIGHT: YOUR EXISTING TEXT -->
+  <div class="about me">
+  <p>
+    I’m Natasya Awlya, a student in the International Program on Science Education at Universitas Pendidikan Indonesia (UPI), with a strong interest in environmental health and education for sustainability.
+  </p>
+
+  <p>
+    This website is part of a campaign to raise awareness about marine plastic pollution as an environmental and public health issue, especially in the Indonesian context. As a country surrounded by oceans, Indonesia faces complex challenges that are often overlooked in everyday learning.
+  </p>
+
+  <p>
+    Through this platform, I aim to bridge the gap between scientific knowledge and real-life issues by presenting content in a way that is clear, structured, and meaningful. The goal is not only to inform, but also to encourage deeper understanding and critical thinking.
+  </p>
+
+  <p>
+    This project also highlights the importance of integrating <strong>Blue Curriculum</strong> and <strong>Green (Greening) Curriculum</strong> into education, so that students are not only aware of environmental problems, but are also equipped to respond to them.
+  </p>
+
+
+  <strong>
+    Let’s learn, reflect, and take action together for a healthier ocean and a more sustainable future.
+  </strong>
+</div>
+
+</div>
+
+<section id="about me">
+  <style>
+    .about-container {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 3rem;
+      align-items: start;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem;
+    }
+
+ 
+    /* PROFILE CARD */
+    .profile-card {
+      background: #fff;
+      padding: 1.5rem;
+      text-align: center;
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .profile-card h3 {   
+      font-family: var(--font-display);
+      color: #042C53;
+      margin-bottom: 0.3rem;
+    }
+
+    .profile-role {
+      font-size: 0.85rem;
+      color: #777;
+      margin-bottom: 0.8rem;
+    }
+
+    .profile-desc {
+      font-family: var(--font-display);      
+      font-size: 0.8rem;
+      color:var(--green-mid);
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .profile-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+    }
+
+    .profile-links a {
+      text-decoration: none;
+      font-size: 0.8rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      background: #E6F1FB;
+      color: #185FA5;
+      transition: 0.2s;
+    }
+
+    .profile-links a:hover {
+      background: #378ADD;
+      color: #fff;
+    }
+
+    /* RIGHT TEXT */
+    .about-text {
+      font-size: 0.95rem;
+      line-height: 1.8;
+      color:var(--green-mid);
+    }
+
+    .about-text p {
+      font-family: var(--font-display);
+      margin-bottom: 1rem;
+      color:var(--green-mid);
+    }
+
+    .about-text strong {
+      display: block;
+      margin-top: 1.5rem;
+      color:var(--green-mid);
+    }
+  </style>
+
+</section>
+
+<!-- SOURCES -->
+<section class="sources-section">
+  <div class="container-narrow">
+    <span class="section-tag tag-ocean" style="margin-bottom:1rem; display:inline-block;">References & Sources</span>
+    <h2 style="font-size:1.4rem; margin-bottom:0.5rem;">Credible Sources & Data</h2>
+    <p style="color:var(--text-muted); font-size:0.9rem;">This campaign is grounded in peer-reviewed research and authoritative international frameworks.</p>
+    <div class="sources-grid">
+      <span class="source-chip">IOC-UNESCO. A New Blue Curriculum (2022)</span>
+      <span class="source-chip">UNESCO. Greening Curriculum Guidance (2024)</span>
+      <span class="source-chip">Jambeck et al. Science (2015): Ocean plastic pollution</span>
+      <span class="source-chip">UNEP. Marine Litter Report (2016)</span>
+      <span class="source-chip">CSIRO. Seabird Plastic Ingestion Study (2015)</span>
+      <span class="source-chip">UNESCO Greening Education Partnership (GEP)</span>
+      <span class="source-chip">Indonesia National Action Plan on Marine Debris (2017)</span>
+      <span class="source-chip">Hoegh-Guldberg & Bruno. Science (2010): Marine ecosystems</span>
+      <span class="source-chip">OECD. PISA 2018 Global Competence Framework</span>
+      <span class="source-chip">Monroe et al. Climate Change Education Meta-Review (2019)</span>
+      <span class="source-chip">UN Ocean Decade 2021–2030 Framework</span>
+      <span class="source-chip">Kemendikbudristek. Kurikulum Merdeka Documentation (2022)</span>
+      <span class="source-chip">WWF Indonesia. Coral Triangle Assessment Reports</span>
+      <span class="source-chip">UNESCO-IBE. Ten Clues for Rethinking Curriculum (2021)</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    <strong style="color:var(--ocean-light);">Our Ocean, Our Future by Natasya Awlya</strong> &nbsp;|&nbsp;
+    A Blue &amp; Green Curriculum Campaign for Indonesia's Ocean Health &nbsp;|&nbsp;
+    Grounded in <a href="https://oceanliteracy.unesco.org" target="_blank">IOC-UNESCO Blue Curriculum</a> &amp; <a href="https://www.unesco.org/en/education/sustainable-development/greening-education" target="_blank">UNESCO Greening Curriculum Guidance</a>
+  </p>
+  <p style="margin-top:0.5rem; font-size:0.75rem; opacity:0.6;">For educational and advocacy purposes. All data sourced from peer-reviewed research and official international bodies.</p>
+</footer>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function toggleAccordion(btn) {
+  const content = btn.nextElementSibling;
+  const isOpen = content.classList.contains('open');
+  document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+  document.querySelectorAll('.accordion-btn').forEach(b => b.classList.remove('open'));
+  if (!isOpen) {
+    content.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+
+// Animate progress bars on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.querySelectorAll('.progress-fill').forEach(bar => {
+        const w = bar.style.width;
+        bar.style.width = '0';
+        setTimeout(() => { bar.style.width = w; }, 100);
+      });
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.3 });
+
+document.querySelectorAll('.progress-bar').forEach(bar => observer.observe(bar.parentElement));
+</script>
+</body>
+</html>
